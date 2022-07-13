@@ -5,7 +5,7 @@
   * [1.2 创建仓库](#1.2%20%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93)
   * [1.3 提交代码到远程仓库](#1.3%20%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
 * [2. 建立本地分支与远程分支关系](#2.%20%E5%BB%BA%E7%AB%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E4%B8%8E%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%85%B3%E7%B3%BB)
-* [3. 多个commit合并](#)
+* [3. 多个commit合并](#3.%20%E5%A4%9A%E4%B8%AAcommit%E5%90%88%E5%B9%B6)
 
 ---
 
@@ -166,4 +166,44 @@ Password for 'https://levytao@github.com': //密码输入步骤1.2生成的token
 [root@localhost my_study]# git branch -vv
 * main  6a31a22 [my_study/study] 1
   study 6a31a22 [my_study/study] 1
+```
+
+---
+
+## 3. 多个commit合并
+
+当多次commit后，需要合并为一次
+
+* 查看commit记录
+
+```linux
+[root@localhost my_study]# git log
+```
+
+* 合并,HEAD~3表示从HEAD指针开始往前3个合并
+
+```linux
+[root@localhost my_study]# git rebase -i HEAD~3
+```
+
+* 此时弹出合并文件，进入vi模式，在上面的选项中，保留第一个，其余的pick改为s，保存
+
+```linux
+ pick 453f244a update
+ s 31b40566 update
+ s 23ca6ec3 update
+```
+
+* 此时会弹出编辑commit注释信息文件，重新编辑注释信息，#号的忽略,保存
+
+* 执行命令
+
+```linux
+[root@localhost my_study]# git rebase --continue
+```
+
+* 此时，变成了一个commit，提交
+
+```linux
+[root@localhost my_study]# git push my_study main:study
 ```

@@ -175,25 +175,25 @@ vsftpd 将shell设置成为nologin后不能登录解决办法:
 
 将check_shell配置为NO
 
-```
+```linux
 [root@localhost~]# vim /etc/vsftpd/vsftpd.conf
 ```
 
 在底部加上一行：
 
-```
+```linux
 check_shell=NO
 ```
 
 重启服务
 
-```
+```linux
 [root@localhost~]# systemctl restart vsftpd
 ```
 
 测试
 
-```
+```linux
 连接
 [root@localhost~]# ftp 192.168.33.55
 
@@ -219,11 +219,11 @@ ftp> mkdir hello
 
 修改配置文件
 
-```
+```linux
 [root@localhost~]# vim /etc/vsftpd/vsftpd.conf
 ```
 
-```
+```linux
 ## 取消注释
 chroot_local_user=YES
 
@@ -233,11 +233,11 @@ allow_writeable_chroot=YES
 
 修改白名单文件，不限制root用户
 
-```
+```linux
 [root@localhost~]# vi /etc/vsftpd/chroot_list
 ```
 
-```
+```linux
 ## 添加一行
 root
 ```
@@ -245,4 +245,3 @@ root
 重启服务
 
 此时，使用ftpuser登录会限制在家目录，而root可以访问系统所有文件
-
