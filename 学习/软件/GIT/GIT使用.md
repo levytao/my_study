@@ -120,7 +120,7 @@ Password for 'https://levytao@github.com': //密码输入步骤1.2生成的token
 * 新建分支
 
 ```linux
-[root@localhost my_study]# git branch study
+[root@localhost my_study]# git branch main
 ```
 
 * 查看本地所有分支
@@ -131,22 +131,38 @@ Password for 'https://levytao@github.com': //密码输入步骤1.2生成的token
 
 * 切换当前分支
 
+  如果文件有修改的情况且分支指针指向版本不一致时是会报错的，需要先commit，即将工作区的内容提交到版本库中
+
 ```linux
-[root@localhost my_study]#
+[root@localhost my_study]# git checkout main
 ```
 
 * 关联本地分支与远程分支
 
-git branch -u origin/remote_branch your_branch
+  git branch -u origin/remote_branch your_branch
+
+  关联后个直接进行pull和push，默认选择当前指定分支及关联的远程分支
 
 ```linux
 [root@localhost my_study]# git branch -u my_study/study study
+
+[root@localhost my_study]# git branch -u my_study/study main
+```
+
+* 在新分支上拉去最新代码，直接pull
+
+```linux
+[root@localhost my_study]# git pull
 ```
 
 * 查看本地分支与远程分支关联情况
+  
+  * 6a31a22表示版本号，发现两个分支版本号一致，指针都指向最新的提交，此时，如果在任意一个分支修改内容后，没有commit到版本库，切换分支，同样会将修改的内容更新的切换的分支当中，实现了同步。但如果进行commit后再切换分支，则不会携带修改的内容
+
+  * [my_study/study]表示远程仓库/分支
 
 ```linux
 [root@localhost my_study]# git branch -vv
-  main  adbb273 部署文档
-* study f93854d [my_study/study] 更新git错误文档
+* main  6a31a22 [my_study/study] 1
+  study 6a31a22 [my_study/study] 1
 ```

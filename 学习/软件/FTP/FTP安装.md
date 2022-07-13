@@ -10,7 +10,6 @@
   * [3.4 开启非本地用户登录](#3.4%20%E5%BC%80%E5%90%AF%E9%9D%9E%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)
   * [3.5 限制用户访问范围](#3.5%20%E9%99%90%E5%88%B6%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE%E8%8C%83%E5%9B%B4)
 
-
 ---
 
 ## 使用场景说明
@@ -23,10 +22,9 @@
 
 下载链接：
 
+* vsftpd: <http://rpmfind.net/linux/rpm2html/search.php?query=vsftpd%28x86-64%29>
 
-- vsftpd: http://rpmfind.net/linux/rpm2html/search.php?query=vsftpd%28x86-64%29 
-
-- ftp: http://rpmfind.net/linux/rpm2html/search.php?query=ftp&submit=Search+...&system=&arch=
+* ftp: <http://rpmfind.net/linux/rpm2html/search.php?query=ftp&submit=Search+...&system=&arch=>
 
 ---
 
@@ -36,11 +34,11 @@
 
 执行安装命令
 
-```
+```linux
 [root@localhost~]# rpm -ivh vsftpd-3.0.2-28.el7.x86_64.rpm
 ```
 
-```
+```linux
 [root@localhost~]# rpm -ivh ftp-0.17-67.el7.x86_64.rpm
 ```
 
@@ -56,39 +54,40 @@ vsftpd服务程序的主配置文件（/etc/vsftpd/vsftpd.conf）
 
 查看SELinux状态
 
-```
+```linux
 [root@localhost~]# /usr/sbin/sestatus -v
 SELinux status:                 disabled
 ```
 
 如果状态不是disabled,需要修改其配置文件
 
-```
+```linux
 [root@localhost~]# vi /etc/selinux/config
 ```
 
 注释掉SELINUX=*****添上一行，添加上
 
-```
+```linux
 SELINUX=disabled
 ```
 
 设置开机自启
-```
+
+```linux
 [root@localhost~]# systemctl enable vsftpd
 ```
 
 重启服务器
 
-### 3.2 开启匿名用户功能 
+### 3.2 开启匿名用户功能
 
-```
+```linux
 [root@localhost~]# vi /etc/vsftpd/vsftpd.conf
 ```
 
 在底部添加三行：
 
-```
+```linux
 anon_upload_enable=YES
 anon_mkdir_write_enable=YES
 anon_other_write_enable=YES
@@ -102,22 +101,23 @@ anon_other_write_enable=YES
 
 修改以下两个vsftpd禁用表，注释root一行
 
-```
+```linux
 [root@localhost~]# vim /etc/vsftpd/user_list
 ```
 
-```
+```linux
 [root@localhost~]# vim /etc/vsftpd/ftpusers
 ```
 
 设置root密码
 
-```
+```linux
 [root@localhost~]# password root
 ```
 
 登录
-```
+
+```linux
 [root@localhost~]# ftp 192.168.33.55
 ```
 
@@ -131,46 +131,45 @@ anon_other_write_enable=YES
 
 新增ftp组的用户，并把shell设置为nologin：
 
-```
+```linux
 [root@localhost~]# useradd -g ftp -s /sbin/nologin ftpuser
 ```
 
 设置用户密码(192.168.33.55上设置为wenjie)
 
-```
+```linux
 [root@localhost~]# passwd ftpuser
 ```
 
 创建用户登录的家目录地址
 
-```
+```linux
 [root@localhost~]# mkdir /var/ftp/ftpuser
 ```
 
 改变文件夹所属用户
 
-```
+```linux
 [root@localhost~]# chown -R ftpuser ftpuser
 ```
 
 改变用户的登录家目录
 
-```
+```linux
 [root@localhost~]# usermod -d /var/ftp/ftpuser ftpuser
 ```
 
 vsftpd 将shell设置成为nologin后不能登录解决办法:
 
-
 禁止vsftpd通过pam认证,并将check_shell配置为NO
 
-```
+```linux
 [root@localhost~]# vim /etc/pam.d/vsftpd
 ```
 
 注释一行：
 
-```
+```linux
 #auth  required    pam_shells.so
 ```
 
