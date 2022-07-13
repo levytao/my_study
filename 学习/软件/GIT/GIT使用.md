@@ -104,5 +104,37 @@ git push <远程主机名> <本地分支名>:<远程分支名>
 
 ```linux
 [root@localhost my_study]# git push my_study study:study
+Username for 'https://github.com': levytao
+Password for 'https://levytao@github.com': //密码输入步骤1.2生成的token
+```
+
+* 关联本地分支与远程分支
+
+git branch -u origin/remote_branch your_branch
+
+```linux
+[root@localhost my_study]# git branch -u my_study/study study
+```
+
+* 查看本地分支与远程分支关联情况
+
+```linux
+[root@localhost my_study]# git branch -vv
+  main  adbb273 部署文档
+* study f93854d [my_study/study] 更新git错误文档
+```
+
+* 新建分支
+
+git branch yourbranch
+
+```linux
+[root@localhost my_study]# git branch main
+```
+
+* 切换当前分支
+
+```linux
+[root@localhost my_study]#
 ```
 
