@@ -4,6 +4,7 @@
   * [1.1 注册github账号](#1.1%20%E6%B3%A8%E5%86%8Cgithub%E8%B4%A6%E5%8F%B7)
   * [1.2 创建仓库](#1.2%20%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93)
   * [1.3 提交代码到远程仓库](#1.3%20%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
+* [2. 建立本地分支与远程分支关系](#2.%20%E5%BB%BA%E7%AB%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E4%B8%8E%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%85%B3%E7%B3%BB)
 
 ---
 
@@ -12,6 +13,10 @@
 ### 1.1 注册github账号
 
 * 官网地址 : <https://github.com/>
+  
+  账号 : levytao
+
+  密码 : twj**************20
 
 ### 1.2 创建仓库
 
@@ -41,7 +46,7 @@
 
 ```linux
 // git push时的密码
-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
+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
 ```
 
 ### 1.3 提交代码到远程仓库
@@ -108,6 +113,28 @@ Username for 'https://github.com': levytao
 Password for 'https://levytao@github.com': //密码输入步骤1.2生成的token
 ```
 
+---
+
+## 2. 建立本地分支与远程分支关系
+
+* 新建分支
+
+```linux
+[root@localhost my_study]# git branch study
+```
+
+* 查看本地所有分支
+
+```linux
+[root@localhost my_study]# git branch
+```
+
+* 切换当前分支
+
+```linux
+[root@localhost my_study]#
+```
+
 * 关联本地分支与远程分支
 
 git branch -u origin/remote_branch your_branch
@@ -123,18 +150,3 @@ git branch -u origin/remote_branch your_branch
   main  adbb273 部署文档
 * study f93854d [my_study/study] 更新git错误文档
 ```
-
-* 新建分支
-
-git branch yourbranch
-
-```linux
-[root@localhost my_study]# git branch main
-```
-
-* 切换当前分支
-
-```linux
-[root@localhost my_study]#
-```
-
