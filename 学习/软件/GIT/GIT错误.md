@@ -62,6 +62,8 @@ drwxrwxrwx    1 vagrant vagrant       4096 Jul 13 01:36 web
 [root@localhost my_study]# git config --global --add safe.directory "*"
 ```
 
+---
+
 ## 3. fatal: unable to access
 
 * 错误情况
