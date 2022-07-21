@@ -1,4 +1,4 @@
-# exec包
+# exec package
 
 * [1. ErrNotFound](#1.%20ErrNotFound) (Var)
 * [2. LookPath](#2.%20LookPath) (Func)
